@@ -26,34 +26,26 @@ html, body {
 }
 
 .container {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
 	height: 70%;
 	width: 70%
 }
 
 .container__goodsBlock {
-	min-width: 400px;
-	width: 50%;
-	min-height: 550px;
+	width: 40%;
+	height: 550px;
 	padding: 20px;
 	background: green;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	align-content: flex-start;
+	display: block;
+	float: left;
 	background: rgba(255,255,255, .7);
 	border-radius: 20px 0 0 20px;
+	border: 1px solid;
 }
 
 .container__cartBlock {
-	min-width: 400px;
-	width: 50%;
-	min-height: 550px;
+	width: 40%;
+	float: left;
+	height: 550px;
 	background: rgba(255,255,255, .9);
 	padding: 20px;
 	position: relative;
@@ -61,12 +53,9 @@ html, body {
 }
 
 .product{
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	align-items: center;
-	min-width: 110px;
-	min-height: 110px;
+	position: relative;
+	width: 110px;
+	height: 110px;
 	margin: 0 0 10px 10px;
 	background: rgba(77,210,233, .7);
 	/*transition: background, .1s;*/

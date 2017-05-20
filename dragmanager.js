@@ -51,6 +51,7 @@ var DragManager = new function() {
             // аватар создан успешно
             // создать вспомогательные свойства shiftX/shiftY
             var coords = getCoords(dragObject.avatar);
+            console.log(coords)
             dragObject.shiftX = dragObject.downX - coords.left;
             dragObject.shiftY = dragObject.downY - coords.top;
 
@@ -65,7 +66,6 @@ var DragManager = new function() {
     }
 
     function onMouseUp(e) {
-
         if (dragObject.avatar) { // если перенос идет
             finishDrag(e);
         }
@@ -76,7 +76,6 @@ var DragManager = new function() {
     }
 
     function finishDrag(e) {
-        console.log(e.clientX, e.clientY)
         var dropElem = findDroppable(e);
 
         if (!dropElem) {
@@ -118,7 +117,6 @@ var DragManager = new function() {
         document.body.appendChild(avatar);
         avatar.style.zIndex = 9999;
         avatar.style.position = 'absolute';
-        avatar.style.display = 'block';
 
         var dropElem = findDroppable(e);
 
@@ -127,21 +125,23 @@ var DragManager = new function() {
 
     function findDroppable(event) {
         // спрячем переносимый элемент
-                dragObject.avatar.hidden = true;
-
-        console.log(event);
+        // dragObject.avatar.hidden = true;
+        dragObject.avatar.style.display = "none";
+        
         // получить самый вложенный элемент под курсором мыши
         var elem = document.elementFromPoint(event.clientX, event.clientY);
-        console.log(elementFromPoint );
+        console.log(elem);
         // показать переносимый элемент обратно
-        dragObject.avatar.hidden = false;
+        
+        // dragObject.avatar.hidden = false;
+        dragObject.avatar.style.display = "block";
 
         if (elem == null) {
             // такое возможно, если курсор мыши "вылетел" за границу окна
             return null;
         }
-        var returnElem = elem.closest('.droppable');
-        return returnElem;
+
+        return elem.closest('.droppable');
     }
 
     document.onmousemove = onMouseMove;

@@ -8,12 +8,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var adapter = new Adapter();
 
     adapter.rollback =  (dragObject) => {
+        console.log("ROOLBACK");
         dragObject.avatar.rollback();
     };
     DragManager.onDragCancel = (dragObject) => {
         adapter.cancel(dragObject);
     };
     DragManager.onDragEnd = (dragObject) => {
+
+        console.log("END");
         adapter.end(dragObject);
     };
     DragManager.onDragStart = (dragObject, dropElem) => {
@@ -32,9 +35,9 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         this.start = (dragObject) => {
             let elem = dragObject.elem;
-            let computedWidth = document.getElementsByClassName("product")[0].offsetWidth;
+            let computedWidth = 100;
 
-            elem.style.width = `${computedWidth - 40}px`;
+            elem.style.width = `110px`;
         };
         this.end = (dragObject) => {
 
@@ -54,13 +57,13 @@ document.addEventListener('DOMContentLoaded', function () {
     function addToCart(elem) {
         if(cartPool.getSize() < maxPrice){
             elem.removeAttribute("style");
-            elem.style.width = DEFAULT_WIDTH;
+            // elem.style.width = DEFAULT_WIDTH;
 
-            let attrId = elem.getAttribute(ATTR_ID);
-            context.cartbox.appendChild(elem);
+            let attrId = elem.getAttribute(attr_id);
+            context.cartBlock.appendChild(elem);
 
             exchange(attrId, listPool, cartPool);
-            updatePriceList(cartPool.getTotal());
+            updateTotalPrice(cartPool.getTotal());
         }
     }
 
@@ -77,13 +80,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	updateTotalPrice = (total) => {
-    	context.listGoods.innerHTML = total.toFixed(2);
+    	context.totalPrice.innerHTML = total.toFixed(2);
 	}
 
 	startObjects = () => {
 		let fragment = document.createDocumentFragment();
 
-		context.wrapContainer = createElement('wrapper');
 		context.container = createElement('container', 'container');
 		context.cartBlock = createElement('container__cartBlock droppable', 'cartBlock');
 		context.goodsBlock = createElement('container__goodsBlock', 'goodsBlock');
@@ -123,9 +125,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         context.container.append(context.goodsBlock);
         context.container.append(context.cartBlock);
-        context.wrapContainer.appendChild(context.container);
 
-        fragment.appendChild(context.wrapContainer);
+        fragment.appendChild(context.container);
 
         document.body.appendChild(fragment);
 
