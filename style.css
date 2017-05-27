@@ -27,25 +27,39 @@ html, body {
 
 .container {
 	height: 70%;
-	width: 70%
+	width: 70%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 .container__goodsBlock {
-	width: 40%;
-	height: 550px;
+	min-width: 400px;
+	width: 38%;
+	min-height: 550px;
 	padding: 20px;
 	background: green;
-	display: block;
-	float: left;
+	display: flex;
+	flex-direction: row;
+	content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	align-content: flex-start;
 	background: rgba(255,255,255, .7);
 	border-radius: 20px 0 0 20px;
-	border: 1px solid;
 }
 
 .container__cartBlock {
-	width: 40%;
-	float: left;
-	height: 550px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	min-width: 400px;
+	width: 38%;
+	min-height: 550px;
 	background: rgba(255,255,255, .9);
 	padding: 20px;
 	position: relative;
@@ -53,9 +67,12 @@ html, body {
 }
 
 .product{
-	position: relative;
-	width: 110px;
-	height: 110px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	min-width: 110px;
+	min-height: 110px;
 	margin: 0 0 10px 10px;
 	background: rgba(77,210,233, .7);
 	/*transition: background, .1s;*/

@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var adapter = new Adapter();
 
     adapter.rollback =  (dragObject) => {
-        console.log("ROOLBACK");
         dragObject.avatar.rollback();
     };
     DragManager.onDragCancel = (dragObject) => {
@@ -16,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     DragManager.onDragEnd = (dragObject) => {
 
-        console.log("END");
         adapter.end(dragObject);
     };
     DragManager.onDragStart = (dragObject, dropElem) => {
@@ -36,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
         this.start = (dragObject) => {
             let elem = dragObject.elem;
             let computedWidth = 100;
-
             elem.style.width = `110px`;
         };
         this.end = (dragObject) => {
@@ -74,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // ______________________________________________
 
-
 	exchange = (id, source, destination) => {
     	destination.takeFrom(id, source);
 	}
@@ -86,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	startObjects = () => {
 		let fragment = document.createDocumentFragment();
 
+        context.wrapContainer = createElement('wrapper');
 		context.container = createElement('container', 'container');
 		context.cartBlock = createElement('container__cartBlock droppable', 'cartBlock');
 		context.goodsBlock = createElement('container__goodsBlock', 'goodsBlock');
@@ -125,8 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         context.container.append(context.goodsBlock);
         context.container.append(context.cartBlock);
-
-        fragment.appendChild(context.container);
+        context.wrapContainer.appendChild(context.container);
+        fragment.appendChild(context.wrapContainer);
 
         document.body.appendChild(fragment);
 
@@ -158,11 +155,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			title = prop.title,
 			cost = prop.cost;
 
-		this.getId = () => {return id};
+		this.getId = () => id;
 
-		this.getTitle = () => {return title};
+		this.getTitle = () => title;
 
-		this.getCost = () => {return cost};
+		this.getCost = () => cost;
 	}
 
 	function ProductPool () {
@@ -203,9 +200,9 @@ document.addEventListener('DOMContentLoaded', function () {
             pool.remove(elem);
         };
 
-        this.getTotal = () => { return total };
+        this.getTotal = () => total;
 
-        this.getSize = () => { return size };
+        this.getSize = () => size;
 
     }
 

@@ -51,7 +51,6 @@ var DragManager = new function() {
             // аватар создан успешно
             // создать вспомогательные свойства shiftX/shiftY
             var coords = getCoords(dragObject.avatar);
-            console.log(coords)
             dragObject.shiftX = dragObject.downX - coords.left;
             dragObject.shiftY = dragObject.downY - coords.top;
 
@@ -77,7 +76,6 @@ var DragManager = new function() {
 
     function finishDrag(e) {
         var dropElem = findDroppable(e);
-
         if (!dropElem) {
             self.onDragCancel(dragObject);
         } else {
@@ -128,13 +126,17 @@ var DragManager = new function() {
         // dragObject.avatar.hidden = true;
         dragObject.avatar.style.display = "none";
         
+
+        console.log(dragObject);
         // получить самый вложенный элемент под курсором мыши
         var elem = document.elementFromPoint(event.clientX, event.clientY);
+        
+
         console.log(elem);
         // показать переносимый элемент обратно
         
         // dragObject.avatar.hidden = false;
-        dragObject.avatar.style.display = "block";
+        dragObject.avatar.style.display = "flex";
 
         if (elem == null) {
             // такое возможно, если курсор мыши "вылетел" за границу окна
